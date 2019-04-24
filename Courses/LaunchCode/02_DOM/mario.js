@@ -30,11 +30,15 @@ function drawPyramid(height) {
         }
 
         // you can delete this now
-        console.log(rowStr)
+        //console.log(rowStr)
 
         // TODO 1
         // create an element whose inner text is rowStr,
         // and insert it as a child of the container <div id="pyramid">
-
+		var span = document.createElement("P");
+		
+		span.innerHTML = rowStr;
+		
+		document.getElementById("pyramid").appendChild(span);
     }
 }
