@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JS Events</title>
+</head>
+
+<body>
+	<header>JavaScript Events</header>
+
+	<div class="content">
+		<div class="left"></div>
+
+		<div class="main">
+			<p>Click this document to activate the handler.</p>
+			<script>
+				window.addEventListener("click", () => {
+					console.log("You knocked?");
+				});
+			</script>
+			
+			<p id="violet">This paragraph turns violet when you hold the arrow-up key.</p>
+			<script>
+				window.addEventListener("keydown", event => {
+					if (event.key == "v") {
+						document.getElementById("violet").style.background = "violet";
+					}
+				});
+				window.addEventListener("keyup", event => {
+					if (event.key == "v") {
+						document.getElementById("violet").style.background = "";
+					}
+				});
+			</script>
+			<p id="balloon">🎈</p>
+			<p id="f_size"></p>
+			<script>
+				let b_size = 10;
+				//handle pressing the up arrow
+				window.addEventListener("keydown", event => {
+					if (event.key == "ArrowUp") {
+						b_size = b_size + 10;
+						if (b_size == 150) {
+							document.getElementById("balloon").innerHTML = "💥";
+						} else {
+							new_font_size = b_size + "px"
+							document.getElementById("f_size").innerHTML = new_font_size;
+							document.getElementById("balloon").style.fontSize = new_font_size;
+						}
+					}
+				});
+				window.addEventListener("keyup", event => {
+					if (event.key == "ArrowUp") {
+						document.getElementById("balloon").style.background = "";
+					}
+				});
+				
+				//if (b_size = 100) {
+				//	document.getElementById("balloon").innerHTML = 💥 ;
+				//}
+
+				
+				//handle pressing the down arrow
+				window.addEventListener("keydown", event => {
+					if (event.key == "ArrowDown") {
+						b_size = b_size - 10;
+						new_font_size = b_size + "px"
+						document.getElementById("f_size").innerHTML = b_size;
+						document.getElementById("balloon").style.fontSize = new_font_size;
+					}
+				});
+				window.addEventListener("keyup", event => {
+					if (event.key == "ArrowDown") {
+						document.getElementById("balloon").style.background = "";
+					}
+				});
+			</script>
+			
+			<tab-panel>
+				<div data-tabname="one">Tab one</div>
+				<div data-tabname="two">Tab two</div>
+				<div data-tabname="three">Tab three</div>
+			</tab-panel>
+			
+			<script>
+				function asTabs(node) {
+				// Your code here.
+				}
+				asTabs(document.querySelector("tab-panel"));
+			</script>
+		</div>
+
+		<div class="right"></div>
+	</div>
+
+	<footer>&copy; Matthew Moore, 2019</footer>
+</body>
+</html>
