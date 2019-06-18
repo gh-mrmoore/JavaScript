@@ -8,24 +8,36 @@
 function determineHeightAndThenDrawPyramid() {
 
     // just so we know we're here
-    console.log("someone invoked the determineHeightAndThenDrawPyramid function!");
+    //console.log("someone invoked the determineHeightAndThenDrawPyramid function!");
 
     // TODO 3
     // figure out the height the user typed (replace the "5" below)
-    heightStr = "5";
+    //heightStr = "5";
+    heightStr = document.getElementById("height").value;
 
     // here we convert the string to an int
     height = parseInt(heightStr);
+    //console.log("Parsed Height String is: ", height);
 
     // TODO 2
     // draw the pyramid with the given height
+    drawPyramid(height);
 
 }
 
 
 // TODO 1
 // hook up the button's click event to our determineHeightAndThenDrawPyramid function
+let button = document.querySelector("button");
 
+button.addEventListener("click", () => {
+    //let pyHeight = document.getElementById("height").value;
+
+    //console.log("Button clicked.");
+    //console.log(pyHeight);
+
+    determineHeightAndThenDrawPyramid();
+});
 
 
 /**
@@ -37,7 +49,7 @@ function determineHeightAndThenDrawPyramid() {
 
      // TODO 4
      // before drawing, clear the old content
-
+    document.getElementById("pyramid").innerHTML = "";
 
      // for each row....
      for (var row = 0; row < height; row++) {

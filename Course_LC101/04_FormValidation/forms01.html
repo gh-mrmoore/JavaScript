@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JavaScript and Forms</title>
+</head>
+
+<body>
+	<form id="user_registration">
+		<table>
+			<tr>
+				<td>Username:</td>
+				<td><input type="text" name="username" id="username" required /></td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td><input type="email" name="email" id="email" /></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type="password" name="password" id="password" /></td>
+			</tr>
+			<tr>
+				<td>Verify Password:</td>
+				<td><input type="password" name="verify" id="verify" /></td>
+			</tr>
+		</table>
+		<input type="submit" value="Register" />
+	</form>
+
+	<div id="form_data_display"></div>
+
+
+	<script type="text/javascript">
+		var form = document.getElementById("user_registration");
+		
+		function validateForm (event) {
+			//prevent form submission to server
+			event.preventDefault();
+
+			console.log(form);
+
+			var formDataStr = "";
+
+			//Verify matching passwords and username length
+			var reportStr = "Success!";
+
+			if (form.username.value.length < 4) {
+				reportStr = "Username must be at least 4 characters long!";
+			} else if (form.password.value != form.verify.value) {
+				reportStr = "Passwords do not match!";
+			}
+
+
+
+			//access data element directly from the form
+			//console.log(form.username);
+
+			//loop thru the information in the form elements
+			/*
+			for (var i=0; i < form.length; i++) {
+				var input = form[i];
+				if (input.type != "submit") {
+					formDataStr += "<b>" + input.name + ":</b> " + input.value + "<br>";
+				}
+			}
+			*/
+
+			var outPutDiv = document.getElementById("form_data_display");
+			//outPutDiv.innerHTML = formDataStr;
+			outPutDiv.innerHTML = reportStr;
+
+		}
+		
+		form.addEventListener("submit", validateForm);
+		
+	</script>
+</body>
+
+</html>
