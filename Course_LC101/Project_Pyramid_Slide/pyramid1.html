@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pyramid Slide</title>
+    </head>
+
+    <style>
+        #draw_pyramid
+        {
+            padding: 5px;
+            font-size: 30px;
+        }
+    </style>
+
+    <body>
+        <div>
+            <select name="p_character" id="p_character" onchange="drawPyramid()">
+                <option value="" selected></option>
+                <option value="#">#</option>
+                <option value="$">$</option>
+                <option value="!">!</option>
+            </select>
+        </div>
+
+        <div>
+            <input type="range" name="p_height" id="p_height" min="0" max="20" oninput="drawPyramid(this.value)" />
+        </div>
+
+        <hr />
+
+        <div id="draw_pyramid"></div>
+
+        <script src="pyramid1.js"></script>
+
+    </body>
+</html>
