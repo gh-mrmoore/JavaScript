@@ -1,0 +1,8 @@
+Part 11
+
+$( '.container' ).on( 'click', 'article', function() { … });
+...this code tells jQuery to watch the .container element for clicks, and then if 
+there are any, check if the click event's target is an article element.
+
+Another advantage in using Event Delegation is that you can use it to consolidate the 
+number of event listeners. For example, what if you had 1,000 list items on a page:
