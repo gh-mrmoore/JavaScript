@@ -1,0 +1,5 @@
+Think about user actions that might lead to asynchronous requests. For instance, when a user scrolls down in a business' 
+page (like Udacity's Facebook page), new stories get inserted into the page which never needs to refresh to show new content 
+(more on this specific example in a moment). This is an example of an asynchronous request.
+
+square brackets in the documentation generally mean that something is optional
