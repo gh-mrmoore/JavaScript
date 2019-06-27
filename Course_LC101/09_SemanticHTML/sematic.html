@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8"/>
+    <title>Semantic HTML</title>
+    <style>
+        body
+        {
+            background-color: black;
+            color: chartreuse;
+            font-family: monospace;
+        }
+
+        article
+        {
+            background-color: gray;
+            padding: 10px;
+            margin: 5px;
+        }
+
+        header
+        {
+            background-color: blue;
+        }
+
+        section > header
+        {
+            background-color: green;
+        }
+
+        a
+        {
+            color: red;
+        }
+
+        #orange-text
+        {
+            color: orange;
+        }
+
+        /*
+        the order of the class declarations in the <style> section are 
+        what is important. The second declaration will always take 
+        precedence over the first. Because .blue-text is declared 
+        second, it overrides the attributes of .pink-text
+        */
+        .pink-text
+        {
+            color: pink;
+        }
+
+        .blue-text
+        {
+            color: blue;
+        }
+
+        .ex1 {display: none;}
+        .ex2 {color: red; display: inline;}
+        .ex3 {color: red; display: block;}
+        .ex4 {color: red; display: inline-block;}  
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>News Made Up By Me</h1>
+        <nav>
+            <ul>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#sports">Sports</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="technology">
+            <header>
+                <h1>Technology News</h1>
+            </header>
+            <article>
+                <h1>JavaScript Does Lots</h1>
+                <p class="pink-text blue-text" id="orange-text">jQuery, AJAX, Angular, React: all JavaScript!</p>
+                <h2>jQuery</h2>
+                <p>jQuery does a lot. <span class="ex1">It is really useful.</span></p>
+                <hr />
+                <h2>AJAX</h2>
+                <p>AJAX does a lot. <span class="ex2">It is really useful.</span></p>
+                <hr />
+                <h2>Angular</h2>
+                <p>Angular does a lot. <span class="ex3">It is really useful.</span></p>
+                <hr />
+                <h2>React</h2>
+                <p>React does a lot. <span class="ex4">It is really useful.</span></p>
+            </article>
+        </section>
+
+        <hr />
+        
+        <section id="sports">
+            <header>
+                <h1>Sports News</h1>
+            </header>
+            <article>
+                <h1>Kevin Durant Opts Out of Contract</h1>
+            </article>
+            <article>
+                <h1>Kyrie Irving Opts Out of Contract</h1>
+            </article>
+        </section>
+            
+    </main>
+
+    <footer>&copy; Matthew Moore, 2019</footer>
+    <script src="functional_js.js"></script>
+
+</body> 
+</html>
