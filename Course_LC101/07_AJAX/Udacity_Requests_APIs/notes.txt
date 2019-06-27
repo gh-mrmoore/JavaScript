@@ -3,3 +3,16 @@ page (like Udacity's Facebook page), new stories get inserted into the page whic
 (more on this specific example in a moment). This is an example of an asynchronous request.
 
 square brackets in the documentation generally mean that something is optional
+
+To improve page load speed:
+My answer (returned correct):
+request generic HTML
+render generic HTML
+request unique HTML
+render unique HTML
+
+Given answer:
+request generic HTML
+request unique HTML
+render generic HTML
+render unique HTML

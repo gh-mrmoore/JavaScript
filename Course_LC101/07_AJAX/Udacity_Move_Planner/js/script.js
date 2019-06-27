@@ -56,18 +56,31 @@ function loadData() {
    
    As of jQuery 1.5.1, the jqXHR object also contains the overrideMimeType() method (it was available in jQuery 1.4.x, as well, but was temporarily removed in jQuery 1.5). The .overrideMimeType() method may be used in the beforeSend() callback function, for example, to modify the response content-type header:
    */
-   
+   var wikiSite = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + cityString + "&format=json&callback=wikiCallBack";
+
+   //add error handling (follow-along)
+   var wikiRequestTimeout = setTimeout(function() {
+     wikiElem.text("unable to connect to Wikipedia");
+   }, 8000);
 
    $.ajax({
-     url: "https://fiddle.jshell.net/favicon.png",   //change to wikipedia
-     beforeSend: function( xhr ) {
-       xhr.overrideMimeType( "text/plain; charset=x-user-defined" );
+     //need the URL to send request to
+     url: wikiSite,   //change to wikipedia
+     //specify dataType
+     dataType: "jsonp",
+     //create function for success
+     success: function(response) { 
+       var wikiList = response[1];
+
+       for (var x = 0; x < wikiList.length; x++) {
+         var pageURL = wikiList[x];
+         var entireURL = 'http://en.wikipedia.org/wiki/' + pageURL;
+         $wikiElem.append('<li><a href="' + entireURL + '">' + pageURL + '</a></li>');
+       };
+
+       //clear timeout message
+       clearTimeout(wikiRequestTimeout);
      }
-   })
-     .done(function( data ) {
-       if ( console && console.log ) {
-         console.log( "Sample of data:", data.slice( 0, 100 ) );
-       }
      });
    $.ajax();
 
