@@ -1,19 +1,9 @@
 $(document).ready(function() {
     // register our function as the "callback" to be triggered by the form's submission event
-    $("#form-gif-request").submit(fetchAndDisplayGif); // in other words, when the form is submitted, fetchAndDisplayGif() will be executed
+    $("#form-gif-request").submit(verifyAndProceed); // in other words, when the form is submitted, fetchAndDisplayGif() will be executed
 });
 
-
-/**
- * sends an asynchronous request to Giphy.com aksing for a random GIF using the 
- * user's search term (along with "jackson 5")
- * 
- * upon receiving a response from Giphy, updates the DOM to display the new GIF
- */
-function fetchAndDisplayGif(event) {
-    
-    // This prevents the form submission from doing what it normally does: send a request (which would cause our page to refresh).
-    // Because we will be making our own AJAX request, we dont need to send a normal request and we definitely don't want the page to refresh.
+function verifyAndProceed(event) {
     event.preventDefault();
 
     var verifyUser = $("#verify").val();
@@ -22,6 +12,30 @@ function fetchAndDisplayGif(event) {
     // get the user's input text from the DOM
     var searchQuery = $('#tag').val(); // TODO should be e.g. "dance"
     console.log(searchQuery);
+
+    if (verifyUser == '5' || verifyUser == 'five' || verifyUser == 'Five') {
+        console.log("Success!");
+        fetchAndDisplayGif(searchQuery);
+    } else {
+        console.log("Total, abject failure!");
+        $('#feedback').text('Nice try jabroni').css("color", "red");
+        $('#verify').css("border-color", "red");
+        $('#verify').css("color", "red");
+        setGifLoadedStatus(false);
+    };
+
+}
+
+/**
+ * sends an asynchronous request to Giphy.com aksing for a random GIF using the 
+ * user's search term (along with "jackson 5")
+ * 
+ * upon receiving a response from Giphy, updates the DOM to display the new GIF
+ */
+function fetchAndDisplayGif(searchQuery) {
+    
+    // This prevents the form submission from doing what it normally does: send a request (which would cause our page to refresh).
+    // Because we will be making our own AJAX request, we dont need to send a normal request and we definitely don't want the page to refresh.
 
     // configure a few parameters to attach to our request
     var params = { 
