@@ -1,5 +1,3 @@
-
-
 var model = {
   watchlistItems: [],
   browseItems: []
@@ -8,7 +6,7 @@ var model = {
 
 var api = {
   root: "https://api.themoviedb.org/3",
-  token: "TODO", // TODO 0 add your api key
+  token: "8635a9331ce7ad7cbe506004d34f79e9", // TODO put your api key here
   /**
    * Given a movie object, returns the url to its poster image
    */
@@ -26,18 +24,12 @@ var api = {
  * the callback function that was passed in
  */
 
-// TODO 1
-// this function should accept a second argument, `keywords`
-function discoverMovies(callback) {
-
-  // TODO 2 
-  // ask the API for movies related to the keywords that were passed in above
-  // HINT: add another key/value pair to the `data` argument below
-
+function discoverMovies(callback, keywords) {
   $.ajax({
     url: api.root + "/discover/movie",
     data: {
       api_key: api.token,
+      with_keywords: keywords,
     },
     success: function(response) {
       model.browseItems = response.results;
@@ -91,15 +83,33 @@ function searchMovies(query, callback) {
 
 
   $.ajax({
-    url: api.root + "/search/movie",
+    url: api.root + "/search/keyword",
     data: {
       api_key: api.token,
       query: query
     },
     success: function(response) {
-      console.log(response);
+      console.log("RESPONSE", response.results);
+      response.results.map(getMovieID);
+
+      var keywordIDs = response.results.map(getMovieID);
+      console.log(keywordIDs);
+
+      var keywordsString = keywordIDs.join("|");
+      console.log(keywordsString);
+
+      discoverMovies(callback, keywordsString);
+
     }
   });
+
+   function getMovieID(movie) {
+     console.log(movie.id);
+     return movie.id;
+  }
+
+
+
 }
 
 
