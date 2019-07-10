@@ -45,3 +45,27 @@ section header {
 section {
 	padding: 2%;
 }
+
+#browse-carousel {
+    max-width: 300px;
+    margin: auto;
+}
+
+ul {
+	padding: 0px;
+	margin: 0px;
+}
+
+li {
+	padding: 0px;
+	margin: 0px;
+}
+
+#add-to-watchlist {
+	width: 50%;
+}
+
+#watchlist-add-button {
+	align: center;
+	padding-left: 25%;
+}
