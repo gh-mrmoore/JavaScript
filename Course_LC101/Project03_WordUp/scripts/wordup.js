@@ -2,7 +2,7 @@
 
 // ----------------- MODEL -----------------
 
-var GAME_DURATION = 60;
+var GAME_DURATION = 15;
 
 // all the stuff we need to keep track of
 var model = {
@@ -74,12 +74,12 @@ function checkIfWordIsReal(word) {
     // make an AJAX call to the Pearson API
     $.ajax({
         // TODO 13 what should the url be?
-        url: "www.todo13.com",
+        url: "http://api.pearson.com/v2/dictionaries/lasde/entries?headword=" + word,
         success: function(response) {
             console.log("We received a response from Pearson!");
 
             // let's print the response to the console so we can take a looksie
-            console.log(response);
+            console.log("Pearson response: ", response);
 
             // TODO 14
             // Replace the 'true' below.
@@ -113,8 +113,8 @@ function render() {
     // update the score on the scoreboard
     $("#current-score").text(currentScore());
 
-    // TODO 2
-    // Update the curent time remaining on the scoreboard.
+    // (DONE) TODO 2 - Update the curent time remaining on the scoreboard.
+    $("#time-remaining").text(model.secondsRemaining);
 
 
     // if the game has not started yet, just hide the #game container and exit
@@ -128,25 +128,28 @@ function render() {
     // clear stuff
     $("#allowed-letters").empty();
     $("#word-submissions").empty();
-    // TODO 10
-    // Add a few things to the above code block (underneath "// clear stuff").
+    // TODO 10 - Add a few things to the above code block (underneath "// clear stuff").
+    $("#textbox").prop("disabled", false);
+    $("#textbox").removeClass("bad-attempt");
+    $(".disallowed-letter").remove();
+
 
 
     // reveal the #game container
     $("#game").show();
 
     // render the letter tiles
-    var letterChips = model.allowedLetters.map(letterChip)
+    var letterChips = model.allowedLetters.map(letterChip);
     $("#allowed-letters").append(letterChips);
 
-    // TODO 11
-    // Render the word submissions
+    // TODO 11 - Render the word submissions
+    var wordsChips = model.wordSubmissions.map(wordSubmissionChip);
+    $("#word-submissions").append(wordsChips);
 
 
     // Set the value of the textbox
-    $("#textbox").val(model.currentAttempt);
-    // TODO 3
-    // Give focus to the textbox.
+    $("#textbox").val(model.currentAttempt).focus();
+    // (DONE) TODO 3 - Give focus to the textbox.
 
 
     // if the current word attempt contains disallowed letters,
@@ -158,17 +161,17 @@ function render() {
         // show the disallowed letters underneath
         var redLetterChips = disallowedLetters.map(disallowedLetterChip);
 
-        // TODO 8
-        // append the red letter chips to the form
+        // TODO 8 - append the red letter chips to the form
+        $("#word-attempt-form").append(redLetterChips);
 
     }
 
     // if the game is over
     var gameOver = model.secondsRemaining <= 0
     if (gameOver) {
-        // TODO 9
-        // disable the text box and clear its contents
-
+        // TODO 9 - disable the text box and clear its contents
+        $("#textbox").prop("disabled", true);
+        $("#textbox").val("");
     }
 }
 
@@ -242,6 +245,10 @@ $(document).ready(function() {
     // Add another event handler with a callback function.
     // When the textbox content changes,
     // update the .currentAttempt property of the model and re-render
+    $("#textbox").on("input", function() {
+        console.log($(this).val());
+        model.currentAttempt = $(this).val();
+    })
 
 
     // when the form is submitted
@@ -280,7 +287,13 @@ function isDisallowedLetter(letter) {
     // TODO 7
     // This should return true if the letter is not an element of
     // the .allowedLetters list in the model
-    return false;
+    if (model.allowedLetters.indexOf(letter) == -1) {
+        console.log("You typed a disallowed letter");
+        return true;
+    } else {
+        console.log("You typed an allowed letter");
+        return false;
+    }
 }
 
 /**
@@ -288,6 +301,7 @@ function isDisallowedLetter(letter) {
  * Note that the list might be empty, if it contains only allowed letters.
  */
 function disallowedLettersInWord(word) {
+    console.log("Disallowed letters received: ", word);
     letters = word.split("");
     return letters.filter(isDisallowedLetter);
 }
@@ -297,9 +311,14 @@ function disallowedLettersInWord(word) {
  * i.e. the word does not contain any disallowed letters
  */
 function containsOnlyAllowedLetters(word) {
-    // TODO 12
-    // Return the actual answer.
-    return true;
+    // TODO 12 - Return the actual answer.
+     if (disallowedLettersInWord(word) == false) {
+         console.log("Disallowed letter or letters in word");
+        return true;
+     } else {
+         return false;
+     }
+    
 }
 
 /**
