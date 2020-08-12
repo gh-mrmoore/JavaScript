@@ -1,0 +1,50 @@
+    let userWord = input.question("What word would you like to score? ");
+    if (userWord.length > 0 && userWord != 'Stop') {
+        while (userWord != 'Stop') {
+            let userScore = scoringAlgorithmArray[x1].scoreFunction(userWord);
+            console.log("Your Word Score is: " + userScore);
+        }
+    } else {
+        console.log("Goodbye");
+    }
+}
+
+
+// function preFixDecrement(x) {
+//     return x--;
+// }
+
+
+// function postFixDecrement(x) {
+//     return --x;
+// }
+
+// console.log(preFixDecrement(10));
+// console.log(postFixDecrement(10));
+// console.log('--------------------------')
+// for (let i = 1; i < 10; ++i) {
+//     console.log(i);
+// }
+// console.log('--------------------------')
+// for (let x = 0; x < 10; x++) {
+//     console.log(x);
+// }
+
+function selectRandomEntry(arr) {
+    let randomNumberSelected = Math.floor(Math.random() * arr.length);
+    return randomNumberSelected
+  }
+
+  let idNumbers = [291, 414, 503, 599, 796, 890];
+
+//set up an array of 3 random crew members
+let randomCrewArray = [];
+
+while (randomCrewArray.length < 3) {
+    //get a random number
+    let thisRandomNumber = selectRandomEntry(idNumbers);    //if i get 3 here
+    let randomCrewIdNumber = idNumbers[thisRandomNumber];   //I get 599 here
+    //what happens __IF__ i've already randomly selected that crew member already???
+    //am I going to add them again or am I going to loop back and try selecting another number???
+    //if I haven't already selected them, how do I add them to my randomCrewArray???
+}
