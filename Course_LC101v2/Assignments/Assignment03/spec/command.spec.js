@@ -15,11 +15,19 @@ describe("Command class", function() {
   });
 
   it("constructor sets command type", function() {
-    new Command('mode change');
+    //create the object needed for the test
+    let commandTypeCheck = new Command('mode change');
+
+    //test for equality
+    assert.strictEqual(commandTypeCheck.commandType, 'mode change');
   });
 
   it("constructor sets a value passed in as the 2nd argument", function() {
-    new Command('mode', 'value');
+    //create the object needed for the test
+    let valueArg = new Command('mode', 'value');
+
+    //test for equality
+    assert.strictEqual(valueArg.value, 'value');
   });
 
 });
