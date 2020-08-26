@@ -3,12 +3,40 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <body>
 
-    <div ng-app="">
-        <p>Name : <input type="text" ng-model="name"></p>
-        <h1>Hello {{name}}</h1>
-
+    <div data-ng-app="myApp" ng-controller="myCtrl" ng-init="names=['Jani', 'Hege', 'Kai']">
         <p>My first expression: {{ 5 + 5 }}</p>
+
+        First Name: <input type="text" ng-model="firstName"><br>
+        Last Name: <input type="text" ng-model="lastName"><br>
+        <br>
+        Full Name: {{firstName + " " + lastName}}<br>
+
+        <hr />
+
+        <p>Looping with ng-repeat:</p>
+        <ul>
+            <li ng-repeat="x in names">{{ x }}</li>
+        </ul>
+
     </div>
 
+    <div data-ng-app="newApp" ng-controller="newCtrl">
+        <p>My second expression: {{ x * y }}</p>
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope) {
+            $scope.firstName= "John";
+            $scope.lastName= "Doe";
+        });
+
+        var myNewApp = angular.module('newApp', []);
+        app.controller('newCtrl', function($scope) {
+            $scope.x = 5;
+            $scope.y = 5;
+        });
+    </script>
+        
 </body>
 </html>

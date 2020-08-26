@@ -57,6 +57,7 @@ class Rover {
             // console.log(resultsArray);
             responseObject.results = resultsArray;
         }
+        console.log(responseObject);
         return responseObject;
     }
 
