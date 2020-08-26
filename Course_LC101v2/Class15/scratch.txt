@@ -1,0 +1,31 @@
+            //retrieve value from radio group
+            let searchEngineChosen = document.querySelector("input[name=engine]:checked")
+
+            //alert("Submit clicked");
+            let searchTerm = document.querySelector("input[name=q]");
+
+            setSearchEngine();
+            // if (searchTerm.value === "") {
+            //     alert("Error");
+            // } else {
+            //     alert("OKAY");
+            // }
+            // event.preventDefault;
+
+
+
+        let searchForm = document.querySelector("form");
+
+
+        searchForm.addEventListener("submit", function(event) {
+        });
+
+
+        let searchButton = document.getElementById("submitSearch");
+
+        searchButton.addEventListener("click", function(event) {
+            event.preventDefault;
+
+            setSearchEngine();
+            console.log("handler");
+        })

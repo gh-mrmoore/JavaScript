@@ -1,0 +1,46 @@
+<!doctype html>
+
+<head>
+	<meta charset="utf-8">
+	<script>
+        let actions = {
+            "google": "https://www.google.com/",
+            "bing": "https://www.bing.com/",
+            "duckduckgo": "https://duckduckgo.com",
+            "ask": "https://www.ask.com/"
+        };
+
+        function setSearchEngine(searchTerm) {
+            let searchEngineChosen = document.querySelector("input[name=engine]:checked");
+            let actionKey = searchEngineChosen.value;
+
+            document.querySelector("form").setAttribute("action", actions[actionKey]);
+        }
+
+    window.addEventListener("load", function(){
+        let searchForm = document.querySelector("form");
+
+        searchForm.addEventListener("submit", function(event) {
+            event.preventDefault;
+            let getSearchString = document.querySelector("input[name=q]");
+            let searchString = getSearchString.value;
+            setSearchEngine(searchString);
+        });
+    });
+	</script>
+</head>
+
+<body>
+
+	<form id="searchForm">
+    <!-- TODO: add form elements -->
+        <input type="text" name="q" id="q" />
+        <label><input type="radio" name="engine" value="google" />Google</label>
+        <label><input type="radio" name="engine" value="bing" />Bing!</label>
+        <label><input type="radio" name="engine" value="ask" />Ask</label>
+        <label><input type="radio" name="engine" value="duckduckgo" />DuckDuckGo</label>
+
+        <button id="submitSearch" type="submit">Go!</button>
+	</form>
+
+</body>
