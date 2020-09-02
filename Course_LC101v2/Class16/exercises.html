@@ -1,0 +1,25 @@
+<!-- 26.5.1.1 - the second example -->
+<!-- 26.5.1.2 - the first example -->
+
+<html>
+   <head>
+      <title>Fetch Planets</title>
+      <script>
+         window.addEventListener("load", function(){
+             fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
+                 response.json().then(function(json) {
+                     console.log(json);
+                 });
+             });
+
+            // TODO: fetch planets JSON
+         });
+      </script>
+   </head>
+   <body>
+      <h1>Destination</h1>
+      <div id="destination">
+         <h3>Planet</h3>
+      </div>
+   </body>
+</html>
