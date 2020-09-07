@@ -7,6 +7,7 @@ window.addEventListener("load", function() {
         astronautPromise.then(function(response) {
             let jsonPromise = response.json();
                 jsonPromise.then(function(json) {
+                    console.log(json);
                     let astronautBio = document.getElementById("container");
                     let allAstronauts = "";
 
@@ -23,7 +24,7 @@ window.addEventListener("load", function() {
                                                             astronautString += `<li class="red">Inactive</li>`
                                                         }
 
-                                                        astronautString+= `<li>Status: ${json[i].active}</li>
+                                                        astronautString+= `
                                                         <li>Skills: <ul>`;
                             for (let z = 0; z < json[i].skills.length; z++) {
                                 let skillString = `<li>${json[i].skills[z]}</li>`;

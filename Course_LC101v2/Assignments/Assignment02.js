@@ -94,8 +94,8 @@ let scrabbleScoreObject = {
         let wordArray = someWord.toLowerCase().split("");    //turn my word in to an array so i can iterate thru it easier
         let wordScore = 0;                                   //set my initial wordScore to 0 so i can add to it
         for (let i = 0; i < wordArray.length; i++) {         //loop thru my wordArray to get the scores from the point structure object
-            let char = wordArray[i];
-            wordScore = wordScore + newPointStructure[char];
+            //let char = wordArray[i];
+            wordScore = wordScore + newPointStructure[wordArray[i]];
         }
         return wordScore;
     }

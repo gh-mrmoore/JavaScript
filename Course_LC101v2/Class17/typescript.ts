@@ -27,3 +27,30 @@ interface Panthera {
  
  pantheraSounds(tiger);
  pantheraSounds(lion);
+
+ interface AnimalKingdom {animalKingdom: string;}
+
+ interface AnimalPhylum {animalPhylum: string;}
+
+ interface AnimalClass {animalClass: string}
+
+ interface AnimalOrder {animalOrder: string}
+
+ interface AnimalFamily {animalFamily: string}
+
+ interface AnimalGenus {animalGenus: string}
+
+ class AnimalSpecies implements AnimalKingdom, AnimalPhylum, AnimalClass, AnimalOrder, AnimalFamily, AnimalGenus {
+    //inherited information
+   animalKingdom: string;
+   animalPhylum: string;
+   animalClass: string
+   animalOrder: string
+   animalFamily: string
+   animalGenus: string
+
+   //class info
+   animalSpecies: string;
+   animalName: string;
+
+ }
