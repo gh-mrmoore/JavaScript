@@ -1,6 +1,8 @@
 // URL for the instructions: 
 // https://education.launchcode.org/intro-to-professional-web-dev/chapters/typescript/exercises.html 
 
+import { SpaceLocation } from "./SpaceLocation";
+
 
 // Part 1: Declare (5) Variables With Type
 let spacecraftName: string = 'Determination';
@@ -51,6 +53,10 @@ class Spacecraft {
         let daysToGetThere = ((kilometersAway * milesPerKilometer) / speedMph) / 24
         return daysToGetThere;
     }
+
+    printDaysToLocation(location: SpaceLocation) {
+        console.log(`${this.name} would take ${this.getDaysToLocation(location.kilometersAway)} days to get to ${location.name}.`);
+    }
 }
 
 
@@ -58,12 +64,13 @@ class Spacecraft {
 // Create an instance of the class here:
 let shuttleDetermination = new Spacecraft('Determination', 17500);
 console.log(shuttleDetermination.sayHello());
-console.log(`I will take ${shuttleDetermination.getDaysToLocation(kilometersToMars)} to get to Mars`);
+// console.log(`I will take ${shuttleDetermination.getDaysToLocation(kilometersToMars)} to get to Mars`);
 
 
 // Move your output statements from part 3 here. Update the template literals use the
 // instance of the class.
-
+shuttleDetermination.printDaysToLocation(new SpaceLocation('Mars', kilometersToMars));
+shuttleDetermination.printDaysToLocation(new SpaceLocation('the Moon', kilometersToTheMoon));
 
 
 // Part 5: Export and Import the SpaceLocation Class
